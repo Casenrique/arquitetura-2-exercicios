@@ -18,7 +18,7 @@ export class CourseBusiness {
         return courses
     }
 
-    public createCourses = async (input: any) => {
+    public createCourse = async (input: any) => {
         const { id, name, lessons } = input
 
         if (typeof id !== "string") {

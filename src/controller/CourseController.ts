@@ -22,4 +22,29 @@ export class CourseController {
             }
         }
     }
+
+    public createCourse = async (req: Request, res: Response) => {
+        try {
+            const input = {
+                id: req.body.id,
+                name: req.body.name,
+                lessons: req.body.lessons
+            }
+
+            const courseBusiness = new CourseBusiness()
+            const output = await courseBusiness.createCourse(input)
+    
+            res.status(201).send(output)
+
+            
+        } catch (error) {
+            console.log(error)
+               
+            if (error instanceof BaseError) {
+                res.status(error.statusCode).send(error.message)
+            } else {
+                res.status(500).send("Erro inesperado")
+            }
+        }
+    }
 }
